@@ -1,5 +1,7 @@
 package com.example.almgrupp.service;
 
+import com.example.almgrupp.Repositories.DragonRepository;
+import com.example.almgrupp.models.Dragon;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
