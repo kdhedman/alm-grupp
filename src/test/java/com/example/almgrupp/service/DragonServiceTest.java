@@ -6,13 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DragonServiceTest {
@@ -23,12 +24,12 @@ class DragonServiceTest {
     DragonRepository mockRepository;
 
     @BeforeEach
-    public void init(){
+    public void init() {
         dragonService = new DragonService(mockRepository);
     }
 
     @Test
-    void getDragons(){
+    void getDragons() {
         String expectedName = "Smaug";
         String expectedSize = "Large";
         Dragon mockDragon = new Dragon(null, expectedName, expectedSize, 800, 6.0, "Green");
@@ -43,7 +44,7 @@ class DragonServiceTest {
     }
 
     @Test
-    void getDragonByColor(){
+    void getDragonByColor() {
         String expectedName = "Smaug";
         String expectedColor = "Blue";
         Dragon mockDragon = new Dragon(null, expectedName, "Large", 800, 6.0, expectedColor);
@@ -58,31 +59,38 @@ class DragonServiceTest {
     }
 
     @Test
-    void getAllColors(){
+    void getAllColors() {
         String expectedColor1 = "blue";
         String expectedColor2 = "red";
         Dragon mockDragon = new Dragon(null, "genericDragonName", "Large", 800, 6.0, expectedColor1);
         Dragon mockDragon2 = new Dragon(null, "genericDragonName", "Large", 800, 6.0, expectedColor2);
 
         when(mockRepository.findAll())
-                .thenReturn(Arrays.asList(mockDragon,mockDragon2));
+                .thenReturn(Arrays.asList(mockDragon, mockDragon2));
         List<String> actual = dragonService.getAllColors();
 
         assertEquals(expectedColor1, actual.get(0));
         assertEquals(expectedColor2, actual.get(1));
-        assertNotEquals(expectedColor2,actual.get(0));
-        assertNotEquals(expectedColor1,actual.get(1));
-    }
-
-
-
-    @Test
-    void saveNewDragon(){
-
+        assertNotEquals(expectedColor2, actual.get(0));
+        assertNotEquals(expectedColor1, actual.get(1));
     }
 
     @Test
-    void getAllNames(){
+    void saveNewDragon() {
+        Dragon mockDragon = new Dragon(null, "Dragon", "Large", 800, 6.0, "blue");
+        Dragon mockDragon2 = new Dragon(null, "Dragon2", "Large", 800, 6.0, "blue");
+        when(mockRepository.findByName(mockDragon.getName())).thenReturn(mockDragon);
+        dragonService.saveNewDragon(mockDragon);
+        Dragon actual = mockRepository.findByName(mockDragon.getName());
+        verify(mockRepository, times(1)).save(Mockito.any(Dragon.class));
+        assertEquals(mockDragon,actual);
+        assertNotEquals(mockDragon2,actual);
+
+
+    }
+
+    @Test
+    void getAllNames() {
         String expectedName1 = "blue";
         String expectedName2 = "red";
         Dragon mockDragon = new Dragon(null, expectedName1, "Large", 800, 6.0, "blue");
@@ -94,7 +102,7 @@ class DragonServiceTest {
 
         assertEquals(expectedName1, actual.get(0));
         assertEquals(expectedName2, actual.get(1));
-        assertNotEquals(expectedName1,actual.get(1));
-        assertNotEquals(expectedName2,actual.get(0));
+        assertNotEquals(expectedName1, actual.get(1));
+        assertNotEquals(expectedName2, actual.get(0));
     }
 }
