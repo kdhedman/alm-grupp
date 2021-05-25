@@ -3,9 +3,11 @@ name: Test CI
 on:
 #  workflow_dispatch:
   push:
-    - !prod
+    branches-ignore:
+      - prod
   pull_request:
-    - !prod
+    branches-ignore:
+      - prod
 
 jobs:
   tests:
