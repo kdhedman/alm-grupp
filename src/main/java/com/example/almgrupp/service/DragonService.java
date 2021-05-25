@@ -25,4 +25,9 @@ public class DragonService {
         List<Dragon> dragonsResult = repository.findAll();
         return dragonsResult.stream().map(dragon -> dragon.getColor()).collect(Collectors.toList());
     }
+
+    public List<String> getAllNames() {
+        List<Dragon> dragonsResult = repository.findAll();
+        return dragonsResult.stream().map(dragon -> dragon.getName()).collect(Collectors.toList());
+    }
 }
