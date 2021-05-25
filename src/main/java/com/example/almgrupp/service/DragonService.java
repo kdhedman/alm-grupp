@@ -18,8 +18,11 @@ public class DragonService {
     public void saveNewDragon(Dragon dragon) {
         repository.save(dragon);
     }
-    public List<String> getDragonByColor(String color) {
-        List<Dragon> dragonsResult = repository.findDragonsByColor(color);
+    public List<Dragon> getDragonByColor(String color) {
+        return repository.findDragonsByColor(color);
+    }
+    public List<String> getAllColors(){
+        List<Dragon> dragonsResult = repository.findAll();
         return dragonsResult.stream().map(dragon -> dragon.getColor()).collect(Collectors.toList());
     }
 }

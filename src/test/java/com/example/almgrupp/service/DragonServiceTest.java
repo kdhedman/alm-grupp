@@ -38,8 +38,32 @@ class DragonServiceTest {
 
         List<Dragon> actual = dragonService.getDragons();
 
-        System.out.println("ID: " + actual.get(0).getId());
         assertEquals(expectedName, actual.get(0).getName());
         assertEquals(expectedSize, actual.get(0).getSize());
+    }
+
+    @Test
+    void getDragonByColor(){
+        String expectedName = "Smaug";
+        String expectedColor = "Blue";
+        Dragon mockDragon = new Dragon(null, expectedName, "Large", 800, 6.0, expectedColor);
+
+        when(mockRepository.findDragonsByColor(expectedColor))
+                .thenReturn(Arrays.asList(mockDragon));
+
+        List<Dragon> actual = dragonService.getDragonByColor(expectedColor);
+
+        assertEquals(expectedColor, actual.get(0).getColor());
+        assertEquals(expectedName, actual.get(0).getName());
+    }
+
+    @Test
+    void getAllColors(){
+
+    }
+
+    @Test
+    void saveNewDragon(){
+
     }
 }
