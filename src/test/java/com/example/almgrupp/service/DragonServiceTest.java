@@ -99,7 +99,7 @@ class DragonServiceTest {
         Dragon mockDragon2 = new Dragon(null, expectedName2, "Large", 800, 6.0, "red");
 
         when(mockRepository.findAll()).thenReturn(Arrays.asList(mockDragon, mockDragon2));
-        List<String> actual = dragonService.getAllColors();
+        List<String> actual = dragonService.getAllNames();
 
         assertEquals(expectedName1, actual.get(0));
         assertEquals(expectedName2, actual.get(1));
