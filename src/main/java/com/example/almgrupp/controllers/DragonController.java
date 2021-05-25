@@ -1,4 +1,4 @@
-package com.example.almgrupp.Controllers;
+package com.example.almgrupp.controllers;
 
 import com.example.almgrupp.service.DragonService;
 import lombok.RequiredArgsConstructor;

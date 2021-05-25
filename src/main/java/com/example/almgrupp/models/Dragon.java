@@ -11,6 +11,6 @@ public class Dragon {
     String name;
     String size;
     int age;
-    String challengeRating;
+    double challengeRating;
     String color;
 }
