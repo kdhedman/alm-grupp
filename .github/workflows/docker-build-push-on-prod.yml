@@ -38,4 +38,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERUSER }}/dungeons-and-dockers:1
+          tags: ${{ secrets.DOCKERUSER }}/dungeons-and-dockers:latest
