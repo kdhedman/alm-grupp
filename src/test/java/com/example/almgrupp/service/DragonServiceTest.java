@@ -59,7 +59,19 @@ class DragonServiceTest {
 
     @Test
     void getAllColors(){
+        String expectedColor1 = "blue";
+        String expectedColor2 = "red";
+        Dragon mockDragon = new Dragon(null, "genericDragonName", "Large", 800, 6.0, expectedColor1);
+        Dragon mockDragon2 = new Dragon(null, "genericDragonName", "Large", 800, 6.0, expectedColor2);
 
+        when(mockRepository.findAll())
+                .thenReturn(Arrays.asList(mockDragon,mockDragon2));
+        List<String> actual = dragonService.getAllColors();
+
+        assertEquals(expectedColor1, actual.get(0));
+        assertEquals(expectedColor2, actual.get(1));
+        assertNotEquals(expectedColor2,actual.get(0));
+        assertNotEquals(expectedColor1,actual.get(1));
     }
 
     @Test
