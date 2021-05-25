@@ -86,7 +86,7 @@ class DragonServiceTest {
         String expectedName1 = "blue";
         String expectedName2 = "red";
         Dragon mockDragon = new Dragon(null, expectedName1, "Large", 800, 6.0, "blue");
-        Dragon mockDragon2 = new Dragon(null, expectedName2, "Large", 800, 6.0, "blue");
+        Dragon mockDragon2 = new Dragon(null, expectedName2, "Large", 800, 6.0, "red");
 
         when(mockRepository.findAll())
                 .thenReturn(Arrays.asList(mockDragon, mockDragon2));
