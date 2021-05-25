@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface DragonRepository extends MongoRepository<Dragon, String> {
     List<Dragon> findDragonsByColor(String color);
+    Dragon findByName(String name);
 }
