@@ -6,7 +6,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - /data/db
+      - /data/dungeonsAndDocker
 
   mongo-express:
     image: mongo-express:latest
