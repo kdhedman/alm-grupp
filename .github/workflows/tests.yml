@@ -3,7 +3,9 @@ name: Test CI
 on:
   workflow_dispatch:
   push:
-
+    - '!prod'
+  pull_request:
+    - '!prod'
 
 jobs:
   tests:
@@ -18,7 +20,9 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '16'
+
       - name: Java Version
         run: java -version
+        
       - name: Build Jar and Run Tests
         run: mvn test
