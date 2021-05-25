@@ -24,6 +24,6 @@ services:
         SPRING_PROFILES_ACTIVE: prod
         DB_HOST: mongo
         DB_PORT: 27017
-        DB_NAME: db-prod
+        DB_NAME: dungeonsAndDocker
     depends_on:
       - mongo
