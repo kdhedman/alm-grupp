@@ -3,9 +3,9 @@ name: Test CI
 on:
 #  workflow_dispatch:
   push:
-    - '!prod'
+    - !prod
   pull_request:
-    - '!prod'
+    - !prod
 
 jobs:
   tests:
